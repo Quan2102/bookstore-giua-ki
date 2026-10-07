@@ -1,0 +1,47 @@
+<h1>Quan ly Sach (Cloud)</h1>
+<p>So luot xem trang trong phien hien tai (session luu tren Atlas): <strong>{{views}}</strong></p>
+
+{{#if error}}
+  <div class="error">{{error}}</div>
+{{/if}}
+
+<h2>Them sach moi</h2>
+<form action="/add" method="POST">
+  <div>
+    <label>Ma sach *</label>
+    <input name="maSach" required placeholder="VD: 224-S001 (bat dau bang 224)" />
+  </div>
+  <div>
+    <label>Ten sach *</label>
+    <input name="tenSach" required />
+  </div>
+  <div>
+    <label>Tac gia</label>
+    <input name="tacGia" />
+  </div>
+  <div>
+    <label>Gia (VND) *</label>
+    <input name="gia" type="number" min="1" required />
+  </div>
+  <button type="submit">Them sach</button>
+</form>
+
+<h2>Danh sach sach</h2>
+<table>
+  <tr>
+    <th>Ma sach</th><th>Ten sach</th><th>Tac gia</th>
+    <th>Gia goc</th><th>VAT</th><th>Gia sau thue</th>
+  </tr>
+  {{#each books}}
+  <tr>
+    <td>{{this.maSach}}</td>
+    <td>{{this.tenSach}}</td>
+    <td>{{this.tacGia}}</td>
+    <td>{{this.gia}}</td>
+    <td>{{this.vat}}%</td>
+    <td><strong>{{this.giaSauThue}}</strong></td>
+  </tr>
+  {{else}}
+  <tr><td colspan="6">Chua co sach nao.</td></tr>
+  {{/each}}
+</table>
